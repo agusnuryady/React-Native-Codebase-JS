@@ -1,0 +1,29 @@
+{
+  "step": "Step One",
+  "see": "See Your Changes",
+  "on": "on",
+  "off": "off",
+  "delete": "Delete",
+  "youSure": "Are you sure?",
+  "yes": "Yes",
+  "no": "No",
+  
+  
+  "weather": "Weather",
+  "prayer": "Prayer",
+  "setting": "Setting",
+  "selected": "Selected",
+  "task": "Tasks",
+  "complete": "Complete",
+  "language": "English",
+
+  "welcomeTo": "Welcom to Codebase",
+  "createdBy": "Created By",
+  "todoList": "Todo List",
+  "selectLanguage": "Select Language",
+  "prayerSchedule": "Prayer Schedule",
+  "whatsUp": "What's up, Buddy!",
+  "todayTask": "TODAY'S TASKS",
+  "typeHere": "Type here",
+  "empty": "Task's is empty"
+}

@@ -1,0 +1,29 @@
+{
+  "step": "Langkah Pertama",
+  "see": "Lihat Perubahan Kamu",
+  "on": "nyala",
+  "off": "mati",
+  "delete": "Hapus",
+  "youSure": "Apakah anda yakin?",
+  "yes": "Ya",
+  "no": "Tidak",
+  
+  
+  "weather": "Prakiraan Cuaca",
+  "prayer": "Sholat",
+  "setting": "Pengaturan",
+  "selected": "Dipilih",
+  "task": "Tugas",
+  "complete": "Selesai",
+  "language": "Bahasa Indonesia",
+
+  "welcomeTo": "Selamat Datang di Codebase",
+  "createdBy": "Dibuat oleh",
+  "todoList": "Jadwal Kegiatan",
+  "selectLanguage": "Pilih Bahasa",
+  "prayerSchedule": "Jadwal Sholat",
+  "whatsUp": "Apa kabar, Sobat!",
+  "todayTask": "TUGAS HARI INI",
+  "typeHere": "Ketik di sini",
+  "empty": "Tidak ada tugas"
+}
