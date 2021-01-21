@@ -63,6 +63,7 @@
     },
     "setupFiles": [
       "./test/setupTests.js",
+      "./test/jestSetupFile.js",
       "./test/enzymeTestAdapterSetup.js",
       "./node_modules/react-native-gesture-handler/jestSetup.js"
     ]
