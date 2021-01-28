@@ -14,6 +14,7 @@
   "setting": "Setting",
   "selected": "Selected",
   "task": "Tasks",
+  "component" : "Component",
   "complete": "Complete",
   "language": "English",
 
@@ -25,5 +26,13 @@
   "whatsUp": "What's up, Buddy!",
   "todayTask": "TODAY'S TASKS",
   "typeHere": "Type here",
-  "empty": "Task's is empty"
+  "empty": "Task's is empty",
+  "listComponent" : "List Component",
+  "filledButton" : "Filled Button",
+  "disabledButton" : "Disabled Button",
+  "ghostButton" : "Ghost Button",
+  "successAlert" : "Success Alert",
+  "warningAlert" : "Warning Alert",
+  "informationAlert" : "Information Alert",
+  "errorAlert" : "Error Alert"
 }

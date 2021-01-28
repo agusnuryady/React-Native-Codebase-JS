@@ -32,7 +32,7 @@ Component.propTypes = {
 
 Component.defaultProps = {
   children: <View />,
-  color: COLORS.white,
+  color: COLORS.primaryWhite,
   shadow: true,
   styleWrap: {},
   styleContainer: {},

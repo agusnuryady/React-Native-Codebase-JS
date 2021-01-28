@@ -23,6 +23,6 @@ export default StyleSheet.create({
   containerHeader: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 18,
+    paddingVertical: 16,
   },
 });

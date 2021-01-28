@@ -17,42 +17,74 @@ import { COLORS } from '../../configs';
 const Component = ({
   children,
   color,
-  customContainer,
-  customText,
-  customWrap,
+  styleContainer,
+  styleText,
+  styleWrap,
   disabled,
   disabledColor,
   isLoading,
   isUpperCase,
-  loadingColor,
   onPress,
   title,
-  type,
+  types,
   ...props
 }) => {
   //variable value
-  let containerStyle = styles.container;
-  let textStyle = styles.text;
-
-  if (type.match(/flat-ripple/)) {
-    containerStyle = styles.containerFlat;
-  }
+  let containerStyle = styles.containerFilled;
+  let textStyle = styles.textFilled;
+  let loadingColors = COLORS.primaryWhite;
 
   if (disabled) {
-    containerStyle = styles.containerDisabled;
+    switch (types) {
+      case 'filled':
+        containerStyle = styles.containerDisableFilled;
+        textStyle = styles.textDisableFilled;
+        loadingColors = COLORS.black80;
+        break;
+      case 'ghost':
+        containerStyle = styles.containerDisableGhost;
+        textStyle = styles.textDisableGhost;
+        loadingColors = COLORS.black60;
+        break;
+      case 'nude':
+        containerStyle = styles.containerDisableNude;
+        textStyle = styles.textDisableNude;
+        loadingColors = COLORS.black60;
+        break;
+    }
+  } else {
+    switch (types) {
+      case 'filled':
+        containerStyle = styles.containerFilled;
+        textStyle = styles.textFilled;
+        loadingColors = COLORS.primaryWhite;
+        break;
+      case 'ghost':
+        containerStyle = styles.containerGhost;
+        textStyle = styles.textGhost;
+        loadingColors = COLORS.primaryBlue;
+        break;
+      case 'nude':
+        containerStyle = styles.containerNude;
+        textStyle = styles.textNude;
+        loadingColors = COLORS.primaryBlue;
+        break;
+    }
   }
+
   if (isUpperCase) {
     title = title.toUpperCase();
   }
+
   const colors = disabled ? disabledColor : color;
 
   if (Platform.OS === 'ios') {
     return (
-      <View style={[styles.wrapContainer, customWrap]}>
+      <View style={[styles.wrapContainer, styleWrap]}>
         <TouchableOpacity
           style={[
             containerStyle,
-            customContainer,
+            styleContainer,
             color && { backgroundColor: colors },
           ]}
           disabled={disabled}
@@ -61,12 +93,12 @@ const Component = ({
           {...props}
         >
           {isLoading ? (
-            <ActivityIndicator color={loadingColor} />
+            <ActivityIndicator color={loadingColors} />
           ) : (
             <>
               {children}
               {title ? (
-                <Text style={[textStyle, customText]}>{title}</Text>
+                <Text style={[textStyle, styleText]}>{title}</Text>
               ) : null}
             </>
           )}
@@ -75,7 +107,7 @@ const Component = ({
     );
   } else {
     return (
-      <View style={[styles.wrapContainer, customWrap]}>
+      <View style={[styles.wrapContainer, styleWrap]}>
         <TouchableNativeFeedback
           disabled={disabled}
           onPress={onPress}
@@ -86,17 +118,17 @@ const Component = ({
           <View
             style={[
               containerStyle,
-              customContainer,
+              styleContainer,
               color && { backgroundColor: colors },
             ]}
           >
             {isLoading ? (
-              <ActivityIndicator color={loadingColor} />
+              <ActivityIndicator color={loadingColors} />
             ) : (
               <>
                 {children}
                 {title ? (
-                  <Text style={[textStyle, customText]}>{title}</Text>
+                  <Text style={[textStyle, styleText]}>{title}</Text>
                 ) : null}
               </>
             )}
@@ -110,33 +142,31 @@ const Component = ({
 Component.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
-  customContainer: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
-  customText: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
-  customWrap: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
+  styleContainer: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
+  styleText: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
+  styleWrap: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
   disabled: PropTypes.bool,
   disabledColor: PropTypes.string,
   isLoading: PropTypes.bool,
   isUpperCase: PropTypes.bool,
-  loadingColor: PropTypes.string,
   onPress: PropTypes.func,
   title: PropTypes.string,
-  type: PropTypes.oneOf(['flat', 'flat-ripple', 'raised-ripple']),
+  types: PropTypes.oneOf(['filled', 'ghost', 'nude']),
 };
 
 Component.defaultProps = {
   children: <View />,
   color: '',
-  customContainer: {},
-  customText: {},
-  customWrap: {},
+  styleContainer: {},
+  styleText: {},
+  styleWrap: {},
   disabled: false,
-  disabledColor: COLORS.gray,
+  disabledColor: COLORS.black60,
   isLoading: false,
   isUpperCase: false,
-  loadingColor: COLORS.white,
   onPress: () => null,
   title: '',
-  type: 'raised-ripple',
+  types: 'filled',
 };
 
 export default memo(Component);
