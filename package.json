@@ -15,7 +15,10 @@
     "build:aab": "cd ./android && ./gradlew clean app:bundleRelease",
     "env:dev": "./prepare-env.sh development && yarn start",
     "env:stage": "./prepare-env.sh staging && yarn start",
-    "env:prod": "./prepare-env.sh production && yarn start"
+    "env:prod": "./prepare-env.sh production && yarn start",
+    "npmenv:dev": "sh prepare-env.sh development && npm start",
+    "npmenv:stage": "sh prepare-env.sh staging && npm start",
+    "npmenv:prod": "sh prepare-env.sh production && npm start"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",

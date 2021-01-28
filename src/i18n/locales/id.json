@@ -14,6 +14,7 @@
   "setting": "Pengaturan",
   "selected": "Dipilih",
   "task": "Tugas",
+  "component" : "Component",
   "complete": "Selesai",
   "language": "Bahasa Indonesia",
 
@@ -25,5 +26,9 @@
   "whatsUp": "Apa kabar, Sobat!",
   "todayTask": "TUGAS HARI INI",
   "typeHere": "Ketik di sini",
-  "empty": "Tidak ada tugas"
+  "empty": "Tidak ada tugas",
+  "listComponent" : "Daftar Component",
+  "filledButton" : "Filled Button",
+  "disabledButton" : "Disabled Button",
+  "ghostButton" : "Ghost Button"
 }

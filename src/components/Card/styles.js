@@ -15,4 +15,18 @@ export default StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 7,
   },
+  wrapCardBasic: {
+    width: null,
+    borderRadius: 10,
+    overflow: 'hidden',
+    padding: 16,
+  },
+  wrapCardButton: {
+    borderRadius: 10,
+  },
+  containerCardButton: {
+    borderRadius: 10,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
 });

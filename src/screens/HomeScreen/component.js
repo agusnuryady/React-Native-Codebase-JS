@@ -79,6 +79,19 @@ const Component = () => {
       screen: 'Setting',
       duration: 3300,
     },
+    {
+      name: 'component',
+      icon: (
+        <SettingIcon
+          width={widthByScreen(9)}
+          height={widthByScreen(9)}
+          color={COLORS.blue70}
+        />
+      ),
+      color: COLORS.blue70,
+      screen: 'Component',
+      duration: 3300,
+    },
   ];
 
   //native effect
@@ -95,6 +108,7 @@ const Component = () => {
         styleWrap={styles.menuWrap}
         styleBox={[STYLES.pd10]}
         color={item.color}
+        types='button'
       >
         <FlipAnimated style={STYLES.mb10} duration={item.duration}>
           <View style={[styles.iconCircle, STYLES.mb10]}>{item.icon}</View>
@@ -128,7 +142,7 @@ const Component = () => {
         <FlatList
           data={listMenu}
           keyExtractor={(item, index) => index.toString()}
-          numColumns={2}
+          numColumns={3}
           renderItem={_renderItemMenu}
         />
       </View>
