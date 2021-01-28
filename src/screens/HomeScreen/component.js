@@ -28,17 +28,43 @@ const Component = () => {
   //variable value
   const listMenu = [
     {
-      name: 'weather',
+      name: 'login',
       icon: (
-        <WeatherIcon
+        <SettingIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.aqua}
+          color={COLORS.blueViolet}
         />
       ),
-      color: COLORS.aqua,
-      screen: 'Weather',
-      duration: 3000,
+      color: COLORS.blueViolet,
+      screen: 'Login',
+      duration: 3300,
+    },
+    {
+      name: 'register',
+      icon: (
+        <SettingIcon
+          width={widthByScreen(9)}
+          height={widthByScreen(9)}
+          color={COLORS.blueViolet}
+        />
+      ),
+      color: COLORS.blueViolet,
+      screen: 'Register',
+      duration: 3300,
+    },
+    {
+      name: 'gobalComponent',
+      icon: (
+        <SettingIcon
+          width={widthByScreen(9)}
+          height={widthByScreen(9)}
+          color={COLORS.blueViolet}
+        />
+      ),
+      color: COLORS.blueViolet,
+      screen: 'GlobalComponent',
+      duration: 3300,
     },
     {
       name: 'prayer',
@@ -78,6 +104,19 @@ const Component = () => {
       color: COLORS.blueViolet,
       screen: 'Setting',
       duration: 3300,
+    },
+    {
+      name: 'weather',
+      icon: (
+        <WeatherIcon
+          width={widthByScreen(9)}
+          height={widthByScreen(9)}
+          color={COLORS.aqua}
+        />
+      ),
+      color: COLORS.aqua,
+      screen: 'Weather',
+      duration: 3000,
     },
   ];
 

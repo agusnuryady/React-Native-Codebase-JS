@@ -10,7 +10,7 @@ const container = {
   alignItems: 'center',
   borderRadius: 5,
   justifyContent: 'center',
-  padding: 12,
+  padding: 14,
 };
 
 export default StyleSheet.create({

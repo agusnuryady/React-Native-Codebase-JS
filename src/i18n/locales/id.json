@@ -16,6 +16,8 @@
   "task": "Tugas",
   "complete": "Selesai",
   "language": "Bahasa Indonesia",
+  "login": "Login",
+  "register": "Daftar",
 
   "welcomeTo": "Selamat Datang di Codebase",
   "createdBy": "Dibuat oleh",
@@ -25,5 +27,6 @@
   "whatsUp": "Apa kabar, Sobat!",
   "todayTask": "TUGAS HARI INI",
   "typeHere": "Ketik di sini",
-  "empty": "Tidak ada tugas"
+  "empty": "Tidak ada tugas",
+  "gobalComponent": "Global Component"
 }

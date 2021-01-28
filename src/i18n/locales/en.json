@@ -16,6 +16,8 @@
   "task": "Tasks",
   "complete": "Complete",
   "language": "English",
+  "login": "Login",
+  "register": "Register",
 
   "welcomeTo": "Welcom to Codebase",
   "createdBy": "Created By",
@@ -25,5 +27,6 @@
   "whatsUp": "What's up, Buddy!",
   "todayTask": "TODAY'S TASKS",
   "typeHere": "Type here",
-  "empty": "Task's is empty"
+  "empty": "Task's is empty",
+  "gobalComponent": "Global Component"
 }

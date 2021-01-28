@@ -10,10 +10,14 @@ const styles = StyleSheet.create({
   mb5: {
     marginBottom: 5,
   },
+  mb8: {
+    marginBottom: 8,
+  },
   mb10: {
     marginBottom: 10,
   },
   mb16: { marginBottom: 16 },
+  mb20: { marginBottom: 20 },
   ml5: { marginLeft: 5 },
   ml10: { marginLeft: 10 },
   mrr10: { marginRight: 10 },

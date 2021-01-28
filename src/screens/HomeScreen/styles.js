@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 16,
+    flex: 1,
   },
   wrapHeader: {
     width: '100%',
