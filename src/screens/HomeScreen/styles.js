@@ -3,11 +3,7 @@ import { StyleSheet } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
-import {
-  FONT_LATO_BOLD,
-  FONT_ROBOTO_MEDIUM,
-  FONT_ROBOTO_REGULAR,
-} from '../../configs/fonts';
+import { FONT_BODY2, FONT_BODY3, FONT_HEADLINE_H1 } from '../../configs/fonts';
 import { widthByScreen } from '../../utils';
 
 const styles = StyleSheet.create({
@@ -24,13 +20,11 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   headerTitle: {
-    ...FONT_LATO_BOLD,
-    fontSize: 28,
+    ...FONT_HEADLINE_H1,
     textAlign: 'center',
   },
   headerDesc: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+    ...FONT_BODY3,
     textAlign: 'center',
   },
   rnLogo: {
@@ -52,15 +46,13 @@ const styles = StyleSheet.create({
     height: widthByScreen(15),
     borderRadius: widthByScreen(15) / 2,
     overflow: 'hidden',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     alignItems: 'center',
     justifyContent: 'center',
   },
   menuTitle: {
-    ...FONT_ROBOTO_MEDIUM,
-    fontWeight: '500',
-    fontSize: 16,
-    color: COLORS.white,
+    ...FONT_BODY2,
+    color: COLORS.primaryWhite,
     textAlign: 'center',
   },
 });

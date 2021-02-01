@@ -1,3 +1,3 @@
-import Component from './component';
+import ExampleHooks from './ExampleHooks';
 
-export default Component;
+export default ExampleHooks;

@@ -1,3 +1,3 @@
-import Component from './component';
+import SholatScreen from './SholatScreen';
 
-export default Component;
+export default SholatScreen;

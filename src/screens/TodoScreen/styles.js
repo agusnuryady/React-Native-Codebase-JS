@@ -4,9 +4,11 @@ import { StyleSheet } from 'react-native';
 //local import
 import { COLORS } from '../../configs';
 import {
-  FONT_LATO_BOLD,
-  FONT_ROBOTO_MEDIUM,
-  FONT_ROBOTO_REGULAR,
+  FONT_BODY1,
+  FONT_BODY2,
+  FONT_BODY5,
+  FONT_HEADLINE_H1,
+  FONT_HEADLINE_H4,
 } from '../../configs/fonts';
 
 const styles = StyleSheet.create({
@@ -28,15 +30,13 @@ const styles = StyleSheet.create({
     height: 40,
   },
   headerTitle: {
-    ...FONT_LATO_BOLD,
-    fontSize: 18,
+    ...FONT_HEADLINE_H4,
   },
   bigText: {
-    ...FONT_LATO_BOLD,
-    fontSize: 28,
+    ...FONT_HEADLINE_H1,
   },
   wrapCard: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
@@ -50,13 +50,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   smallText: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 12,
+    ...FONT_BODY5,
     color: COLORS.gray,
   },
   title: {
-    ...FONT_LATO_BOLD,
-    fontSize: 18,
+    ...FONT_HEADLINE_H4,
   },
   wrapIndicator: {
     width: '100%',
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.moonYellow,
   },
   wrapItem: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     borderRadius: 10,
     padding: 16,
     flexDirection: 'row',
@@ -84,8 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   itemText: {
-    ...FONT_ROBOTO_MEDIUM,
-    fontSize: 16,
+    ...FONT_BODY2,
     flex: 1,
   },
   wrapCheck: { borderRadius: 25 / 2 },
@@ -124,7 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   wrapInput: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     flex: 1,
     height: 60,
     borderRadius: 60 / 2,
@@ -141,8 +138,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   textInput: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 16,
+    ...FONT_BODY1,
   },
   emptyList: {
     alignItems: 'center',

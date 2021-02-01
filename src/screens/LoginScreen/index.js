@@ -1,3 +1,3 @@
-import Component from './component';
+import LoginScreen from './LoginScreen';
 
-export default Component;
+export default LoginScreen;

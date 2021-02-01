@@ -3,16 +3,12 @@ import { StyleSheet } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
-import {
-  FONT_LATO_BOLD,
-  FONT_ROBOTO_MEDIUM,
-  FONT_ROBOTO_REGULAR,
-} from '../../configs/fonts';
+import { FONT_BODY2, FONT_BODY3, FONT_HEADLINE_H4 } from '../../configs/fonts';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
   },
   backWrap: {
     position: 'absolute',
@@ -25,30 +21,25 @@ const styles = StyleSheet.create({
     height: 40,
   },
   headerTitle: {
-    ...FONT_LATO_BOLD,
-    fontSize: 18,
+    ...FONT_HEADLINE_H4,
   },
   content: {
     padding: 16,
   },
   textTitle: {
-    ...FONT_LATO_BOLD,
-    fontSize: 18,
+    ...FONT_HEADLINE_H4,
     color: COLORS.black90,
   },
-  mtextDesc: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+  textDesc: {
+    ...FONT_BODY3,
     color: COLORS.black90,
   },
   textBlur: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+    ...FONT_BODY3,
     color: COLORS.black70,
   },
   textLink: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+    ...FONT_BODY3,
     color: COLORS.primaryBlue,
   },
   wrapCenter: {
@@ -70,9 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textButton: {
-    ...FONT_ROBOTO_MEDIUM,
-    fontSize: 14,
-    color: COLORS.white,
+    ...FONT_BODY2,
+    color: COLORS.primaryWhite,
   },
 });
 

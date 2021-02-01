@@ -3,39 +3,76 @@ import { StyleSheet } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
-import { FONT_YATRA_REG_12 } from '../../configs/fonts';
+import { FONT_HEADLINE_H6 } from '../../configs/fonts';
 
 //variable valu
 const container = {
   alignItems: 'center',
-  borderRadius: 5,
+  borderRadius: 4,
   justifyContent: 'center',
-  padding: 14,
+  padding: 16,
+};
+const text = {
+  ...FONT_HEADLINE_H6,
+  lineHeight: 18,
 };
 
 export default StyleSheet.create({
-  button: {
-    lineHeight: 48,
-  },
-  container: {
+  containerFilled: {
     ...container,
-    backgroundColor: COLORS.green,
+    backgroundColor: COLORS.primaryBlue,
   },
-  containerDisabled: {
+  containerGhost: {
     ...container,
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.primaryWhite,
+    borderWidth: 1,
+    borderColor: COLORS.primaryBlue,
   },
-  containerFlat: {
+  containerNude: {
     ...container,
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.transparent,
   },
-  text: {
-    ...FONT_YATRA_REG_12,
-    color: COLORS.white,
+  containerDisableFilled: {
+    ...container,
+    backgroundColor: COLORS.black50,
+  },
+  containerDisableGhost: {
+    ...container,
+    backgroundColor: COLORS.black50,
+    borderWidth: 1,
+    borderColor: COLORS.black80,
+  },
+  containerDisableNude: {
+    ...container,
+    backgroundColor: COLORS.transparent,
+  },
+  textFilled: {
+    ...text,
+    color: COLORS.primaryWhite,
+  },
+  textGhost: {
+    ...text,
+    color: COLORS.primaryBlue,
+  },
+  textNude: {
+    ...text,
+    color: COLORS.primaryBlue,
+  },
+  textDisableFilled: {
+    ...text,
+    color: COLORS.black80,
+  },
+  textDisableGhost: {
+    ...text,
+    color: COLORS.black60,
+  },
+  textDisableNude: {
+    ...text,
+    color: COLORS.black60,
   },
   wrapContainer: {
     overflow: 'hidden',
     width: null,
-    borderRadius: 5,
+    borderRadius: 4,
   },
 });

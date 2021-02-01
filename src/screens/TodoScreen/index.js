@@ -1,3 +1,3 @@
-import Component from "./Component";
+import TodoScreen from './TodoScreen';
 
-export default Component;
+export default TodoScreen;

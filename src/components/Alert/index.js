@@ -1,3 +1,3 @@
-import Component from './component';
+import Alert from './Alert';
 
-export default Component;
+export default Alert;

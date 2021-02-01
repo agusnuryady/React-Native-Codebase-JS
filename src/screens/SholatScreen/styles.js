@@ -3,12 +3,12 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
-import { FONT_LATO_BOLD, FONT_ROBOTO_REGULAR } from '../../configs/fonts';
+import { FONT_BODY3, FONT_HEADLINE_H4 } from '../../configs/fonts';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
   },
   backWrap: {
     position: 'absolute',
@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   headerTitle: {
-    ...FONT_LATO_BOLD,
-    fontSize: 18,
+    ...FONT_HEADLINE_H4,
   },
   wrapTop: {
     position: 'relative',
@@ -40,8 +39,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   topText: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+    ...FONT_BODY3,
   },
   imageTop: {
     width: '100%',

@@ -1,10 +1,5 @@
 import { StyleSheet } from 'react-native';
-import {
-  FONT_LATO_BOLD,
-  FONT_LATO_REGULAR,
-  FONT_ROBOTO_MEDIUM,
-  FONT_ROBOTO_REGULAR,
-} from '../../configs/fonts';
+import { FONT_BODY2, FONT_BODY3, FONT_HEADLINE_H4 } from '../../configs/fonts';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,8 +16,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   headerTitle: {
-    ...FONT_LATO_BOLD,
-    fontSize: 18,
+    ...FONT_HEADLINE_H4,
   },
   wrapItem: {
     width: '100%',
@@ -34,16 +28,13 @@ const styles = StyleSheet.create({
   rightItem: { justifyContent: 'space-between', alignSelf: 'stretch' },
   weatherIcon: { width: 100, height: 100 },
   dayText: {
-    ...FONT_ROBOTO_MEDIUM,
-    fontSize: 14,
+    ...FONT_BODY2,
   },
   infoText: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 12,
+    ...FONT_BODY3,
   },
   conditionText: {
-    ...FONT_LATO_BOLD,
-    fontSize: 16,
+    ...FONT_HEADLINE_H4,
   },
   centerItem: {
     flex: 1,

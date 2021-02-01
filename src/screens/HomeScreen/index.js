@@ -1,3 +1,3 @@
-import Component from './component';
+import HomeScreen from './HomeScreen';
 
-export default Component;
+export default HomeScreen;

@@ -1,30 +1,52 @@
 //package import
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
-import { FONT_YATRA_REG_12 } from '../../configs/fonts';
+import { FONT_HEADLINE_H6, FONT_BODY5 } from '../../configs/fonts';
 
 export default StyleSheet.create({
-  flex1: { flex: 1 },
-  container: {
+  wrapAlert: {
+    width: '100%',
     padding: 16,
-    elevation: 3,
-    paddingHorizontal: 16,
-    paddingBottom: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
     position: 'absolute',
-    top: 0,
-    zIndex: 2,
+    top: StatusBar.currentHeight,
+    zIndex: 3,
   },
-  action: {
-    width: 15,
-    height: 15,
+  containerAlert: {
+    width: '100%',
+    elevation: 3,
+    padding: 8,
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
   },
-  text: {
-    ...FONT_YATRA_REG_12,
-    color: COLORS.white,
-    textAlign: 'center',
+  wrapIcon: {
+    marginTop: 2,
+  },
+  wrapText: {
+    flex: 1,
+    paddingHorizontal: 8,
+  },
+  textTitle: {
+    ...FONT_HEADLINE_H6,
+    color: COLORS.primaryWhite,
+  },
+  textDesc: {
+    ...FONT_BODY5,
+    lineHeight: 14,
+    color: COLORS.primaryWhite,
+    marginTop: 8,
+  },
+  wrapClose: {
+    width: 20,
+    borderRadius: 20 / 2,
+  },
+  containerClose: {
+    width: '100%',
+    height: 20,
+    borderRadius: 20 / 2,
+    padding: 0,
   },
 });

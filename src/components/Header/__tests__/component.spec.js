@@ -1,11 +1,11 @@
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Component from '..';
+import Header from '..';
 
 describe('Some component', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<Component />).toJSON();
+    const tree = renderer.create(<Header />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

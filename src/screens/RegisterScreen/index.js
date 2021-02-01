@@ -1,3 +1,3 @@
-import Component from './component';
+import RegisterScreen from './RegisterScreen';
 
-export default Component;
+export default RegisterScreen;

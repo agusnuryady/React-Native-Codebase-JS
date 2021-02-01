@@ -3,24 +3,23 @@ import { StyleSheet } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
-import { FONT_LATO_BOLD, FONT_LATO_REGULAR } from '../../configs/fonts';
+import { FONT_BODY1, FONT_HEADLINE_H4 } from '../../configs/fonts';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     alignItems: 'center',
     padding: 16,
   },
   title: {
-    ...FONT_LATO_BOLD,
-    fontSize: 16,
+    ...FONT_HEADLINE_H4,
     color: COLORS.black,
     marginBottom: 16,
   },
   content: {
     width: '80%',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     borderRadius: 10,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
@@ -36,8 +35,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
   },
   text: {
-    ...FONT_LATO_REGULAR,
-    fontSize: 16,
+    ...FONT_BODY1,
     color: COLORS.black,
   },
   wrapIcon: {

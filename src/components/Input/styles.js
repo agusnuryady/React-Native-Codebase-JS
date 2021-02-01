@@ -3,11 +3,7 @@ import { StyleSheet } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
-import {
-  FONT_BODY1,
-  FONT_BODY3,
-  FONT_ROBOTO_REGULAR,
-} from '../../configs/fonts';
+import { FONT_BODY1, FONT_BODY3 } from '../../configs/fonts';
 
 export default StyleSheet.create({
   shadow: {
@@ -24,10 +20,9 @@ export default StyleSheet.create({
     width: '100%',
   },
   textLabel: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+    ...FONT_BODY3,
     lineHeight: 16,
-    color: COLORS.black90,
+    color: COLORS.primaryBlack,
     marginBottom: 8,
     textTransform: 'capitalize',
   },
@@ -38,22 +33,20 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   textError: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+    ...FONT_BODY3,
     lineHeight: 16,
     color: COLORS.red60,
     marginTop: 8,
   },
   textLength: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 14,
+    ...FONT_BODY3,
     lineHeight: 16,
     color: COLORS.black70,
     marginTop: 8,
   },
   boxInput: {
     width: '100%',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     padding: 16,
     borderRadius: 4,
     borderWidth: 1,
@@ -82,14 +75,14 @@ export default StyleSheet.create({
     padding: 16,
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: COLORS.black60,
+    borderColor: COLORS.black50,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
   },
   boxInputButton: {
     width: '100%',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primaryWhite,
     padding: 8,
     borderRadius: 10,
     flexDirection: 'row',
@@ -100,10 +93,9 @@ export default StyleSheet.create({
     borderColor: COLORS.red60,
   },
   textInput: {
-    ...FONT_ROBOTO_REGULAR,
-    fontSize: 16,
+    ...FONT_BODY1,
     lineHeight: 19,
-    color: COLORS.black90,
+    color: COLORS.primaryBlack,
     flex: 1,
     padding: 0,
   },

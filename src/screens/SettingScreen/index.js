@@ -1,3 +1,3 @@
-import Component from './Component';
+import SettingScreen from './SettingScreen';
 
-export default Component;
+export default SettingScreen;

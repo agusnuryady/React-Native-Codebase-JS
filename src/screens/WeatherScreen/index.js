@@ -1,3 +1,3 @@
-import Component from './component';
+import WeatherScreen from './WeatherScreen';
 
-export default Component;
+export default WeatherScreen;
