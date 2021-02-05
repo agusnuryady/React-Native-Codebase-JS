@@ -13,7 +13,7 @@ import {
   VisibilityOffIcon,
 } from '../../assets/svgs';
 
-const Component = forwardRef(
+const Input = forwardRef(
   (
     {
       types,
@@ -70,13 +70,13 @@ const Component = forwardRef(
                     <VisibilityIcon
                       width="24"
                       height="24"
-                      color={COLORS.black80}
+                      fill={COLORS.black80}
                     />
                   ) : (
                     <VisibilityOffIcon
                       width="24"
                       height="24"
-                      color={COLORS.black80}
+                      fill={COLORS.black80}
                     />
                   )}
                 </Button>
@@ -104,11 +104,7 @@ const Component = forwardRef(
                 style={[styles.textInput, styleTextInput]}
                 {...props}
               />
-              <ArrowDropdownIcon
-                width="12"
-                height="12"
-                color={COLORS.black70}
-              />
+              <ArrowDropdownIcon width="12" height="12" fill={COLORS.black70} />
             </Button>
           );
         case 'textarea':
@@ -190,7 +186,7 @@ const Component = forwardRef(
   }
 );
 
-Component.propTypes = {
+Input.propTypes = {
   types: PropTypes.oneOf(['basic', 'dropdown', 'textarea', 'button']),
   styleWrap: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
   styleLabel: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
@@ -212,7 +208,7 @@ Component.propTypes = {
   shadow: PropTypes.bool,
 };
 
-Component.defaultProps = {
+Input.defaultProps = {
   types: 'basic',
   styleWrap: {},
   styleLabel: {},
@@ -234,6 +230,6 @@ Component.defaultProps = {
   shadow: true,
 };
 
-Component.displayName = 'Input';
+Input.displayName = 'Input';
 
-export default memo(Component);
+export default memo(Input);

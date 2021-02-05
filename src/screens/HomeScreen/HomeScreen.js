@@ -18,7 +18,7 @@ import {
   WeatherIcon,
 } from '../../assets/svgs';
 
-const Component = () => {
+const HomeScreen = () => {
   //package value
   const navigation = useNavigation();
 
@@ -33,7 +33,7 @@ const Component = () => {
         <SettingIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.primaryBlue}
+          fill={COLORS.primaryBlue}
         />
       ),
       color: COLORS.primaryBlue,
@@ -46,7 +46,7 @@ const Component = () => {
         <SettingIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.lime50}
+          fill={COLORS.lime50}
         />
       ),
       color: COLORS.lime50,
@@ -59,7 +59,7 @@ const Component = () => {
         <SettingIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.yellow60}
+          fill={COLORS.yellow60}
         />
       ),
       color: COLORS.yellow60,
@@ -72,7 +72,7 @@ const Component = () => {
         <WeatherIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.blue30}
+          fill={COLORS.blue30}
         />
       ),
       color: COLORS.blue30,
@@ -85,7 +85,7 @@ const Component = () => {
         <MosqueIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.green40}
+          fill={COLORS.green40}
         />
       ),
       color: COLORS.green40,
@@ -98,7 +98,7 @@ const Component = () => {
         <TodoIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.yellow50}
+          fill={COLORS.yellow50}
         />
       ),
       color: COLORS.yellow50,
@@ -111,7 +111,7 @@ const Component = () => {
         <SettingIcon
           width={widthByScreen(9)}
           height={widthByScreen(9)}
-          color={COLORS.black60}
+          fill={COLORS.black60}
         />
       ),
       color: COLORS.black60,
@@ -176,4 +176,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default HomeScreen;

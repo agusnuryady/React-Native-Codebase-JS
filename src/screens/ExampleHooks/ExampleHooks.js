@@ -11,7 +11,7 @@ import { Alert, Button, Card, Input } from '../../components';
 import { COLORS, IMAGES, ENDPOINT } from '../../configs';
 import { widthByScreen, heightByScreen, isEmpty } from '../../utils';
 
-const Component = () => {
+const ExampleHooks = () => {
   //package value
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -44,4 +44,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default ExampleHooks;

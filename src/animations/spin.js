@@ -4,7 +4,7 @@ import { Easing } from 'react-native-reanimated';
 import { Animated, View } from 'react-native';
 import PropTypes from 'prop-types';
 
-const Component = ({ children, duration, style }) => {
+const SpinAnimated = ({ children, duration, style }) => {
   //state value
   const [spinValue] = useState(new Animated.Value(0));
 
@@ -38,16 +38,16 @@ const Component = ({ children, duration, style }) => {
   );
 };
 
-Component.propTypes = {
+SpinAnimated.propTypes = {
   children: PropTypes.node,
   duration: PropTypes.number,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
 };
 
-Component.defaultProps = {
+SpinAnimated.defaultProps = {
   children: <View />,
   duration: 5000,
   style: {},
 };
 
-export default memo(Component);
+export default memo(SpinAnimated);

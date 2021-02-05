@@ -11,7 +11,8 @@ tersedia global component antara lain:
 1. Alert
 2. Button
 3. Card
-4. Header.
+4. Header
+5. Input
 
 dan banyak lagi tambahan feature untuk mendukung suatu project yang akan dibuat.
 

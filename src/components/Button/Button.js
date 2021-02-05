@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import { COLORS } from '../../configs';
 
-const Component = ({
+const Button = ({
   children,
   color,
   styleContainer,
@@ -139,7 +139,7 @@ const Component = ({
   }
 };
 
-Component.propTypes = {
+Button.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
   styleContainer: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
@@ -154,7 +154,7 @@ Component.propTypes = {
   types: PropTypes.oneOf(['filled', 'ghost', 'nude']),
 };
 
-Component.defaultProps = {
+Button.defaultProps = {
   children: <View />,
   color: '',
   styleContainer: {},
@@ -169,4 +169,4 @@ Component.defaultProps = {
   types: 'filled',
 };
 
-export default memo(Component);
+export default memo(Button);

@@ -5,7 +5,7 @@ import { Text, View } from 'react-native';
 //local import
 import styles from './styles';
 
-class NewLogin extends Component {
+class ExampleScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -34,4 +34,4 @@ class NewLogin extends Component {
   }
 }
 
-export default NewLogin;
+export default ExampleScreen;

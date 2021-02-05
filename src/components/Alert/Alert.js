@@ -15,21 +15,21 @@ import {
   CrossIcon,
 } from '../../assets/svgs';
 
-const Component = ({ close, desc, title, visible, types, duration }) => {
+const Alert = ({ close, desc, title, visible, types, duration }) => {
   //state value
   const [bounceValue] = useState(new Animated.Value(-200));
-  const [icon, setIcon] = useState(
-    <CloseCircleIcon width="15" height="15" color={COLORS.primaryWhite} />
-  );
+  const [icon, setIcon] = useState(null);
+  const [iconClose, setIconClose] = useState(null);
   const [color, setColor] = useState(COLORS.red80);
 
   //native effect
   useEffect(() => {
     if (visible) {
       _setVariable();
+      _setIconClose();
       _show();
     }
-  }, [_close, _setVariable, _show, visible]);
+  }, [_close, _setIconClose, _setVariable, _show, visible]);
 
   //place your function in here
   const _show = useCallback(() => {
@@ -60,30 +60,36 @@ const Component = ({ close, desc, title, visible, types, duration }) => {
     switch (types) {
       case 'success':
         setIcon(
-          <CheckCircleIcon width="15" height="15" color={COLORS.primaryWhite} />
+          <CheckCircleIcon width="15" height="15" fill={COLORS.primaryWhite} />
         );
         setColor(COLORS.green50);
         break;
       case 'warning':
         setIcon(
-          <WarningIcon width="15" height="15" color={COLORS.primaryWhite} />
+          <WarningIcon width="15" height="15" fill={COLORS.primaryWhite} />
         );
         setColor(COLORS.yellow70);
         break;
       case 'information':
         setIcon(
-          <InfoCircleIcon width="15" height="15" color={COLORS.primaryWhite} />
+          <InfoCircleIcon width="15" height="15" fill={COLORS.primaryWhite} />
         );
         setColor(COLORS.blue40);
         break;
       case 'error':
         setIcon(
-          <CloseCircleIcon width="15" height="15" color={COLORS.primaryWhite} />
+          <CloseCircleIcon width="15" height="15" fill={COLORS.primaryWhite} />
         );
         setColor(COLORS.red80);
         break;
     }
   }, [types]);
+
+  const _setIconClose = useCallback(() => {
+    setIconClose(
+      <CrossIcon width="10" height="10" fill={COLORS.primaryWhite} />
+    );
+  }, []);
 
   return (
     <Animated.View
@@ -109,14 +115,14 @@ const Component = ({ close, desc, title, visible, types, duration }) => {
           styleWrap={styles.wrapClose}
           styleContainer={styles.containerClose}
         >
-          <CrossIcon width="10" height="10" color={COLORS.primaryWhite} />
+          {iconClose}
         </Button>
       </View>
     </Animated.View>
   );
 };
 
-Component.propTypes = {
+Alert.propTypes = {
   types: PropTypes.oneOf(['success', 'warning', 'information', 'error']),
   visible: PropTypes.bool,
   title: PropTypes.string,
@@ -125,7 +131,7 @@ Component.propTypes = {
   duration: PropTypes.number,
 };
 
-Component.defaultProps = {
+Alert.defaultProps = {
   types: 'error',
   visible: false,
   title: '',
@@ -134,4 +140,4 @@ Component.defaultProps = {
   duration: 3000,
 };
 
-export default memo(Component);
+export default memo(Alert);

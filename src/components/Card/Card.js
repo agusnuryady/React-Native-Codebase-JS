@@ -8,7 +8,7 @@ import styles from './styles';
 import { COLORS } from '../../configs';
 import Button from '../Button';
 
-const Component = ({
+const Card = ({
   types,
   children,
   color,
@@ -64,7 +64,7 @@ const Component = ({
   }
 };
 
-Component.propTypes = {
+Card.propTypes = {
   types: PropTypes.oneOf(['basic', 'button']),
   children: PropTypes.node,
   color: PropTypes.string,
@@ -78,7 +78,7 @@ Component.propTypes = {
   disabledColor: PropTypes.string,
 };
 
-Component.defaultProps = {
+Card.defaultProps = {
   types: 'basic',
   children: <View />,
   color: COLORS.primaryWhite,
@@ -92,4 +92,4 @@ Component.defaultProps = {
   disabledColor: COLORS.black70,
 };
 
-export default memo(Component);
+export default memo(Card);

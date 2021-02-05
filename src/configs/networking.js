@@ -12,8 +12,8 @@ export const STATUS_CODE = {
 };
 
 const futch = (url, opts = {}, onProgress) => {
-  return new Promise((res, rej) => {
-    let xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
+  let promise = new Promise((res, rej) => {
     xhr.open(opts.method || 'get', url);
     for (let k in opts.headers || {}) {
       xhr.setRequestHeader(k, opts.headers[k]);
@@ -25,6 +25,8 @@ const futch = (url, opts = {}, onProgress) => {
     }
     xhr.send(opts.body);
   });
+  promise.abort = () => xhr.abort();
+  return promise;
 };
 
 const futchData = async (url, params, progress, isForm = false) => {
@@ -61,7 +63,7 @@ const futchData = async (url, params, progress, isForm = false) => {
   return json;
 };
 
-const fetchData = async (url, params, customHeaders, isForm = false) => {
+const fetchData = async (url, abort, params, customHeaders, isForm = false) => {
   let headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -94,6 +96,7 @@ const fetchData = async (url, params, customHeaders, isForm = false) => {
   const response = await fetch(url, {
     ...params,
     headers,
+    signal: abort,
   });
   if (response.status === STATUS_CODE.NO_CONTENT) {
     return {};
@@ -103,7 +106,7 @@ const fetchData = async (url, params, customHeaders, isForm = false) => {
   return json;
 };
 
-const get = async (endpoint, params = {}, headers = {}) => {
+const get = async (endpoint, abort = null, params = {}, headers = {}) => {
   let queryString = Object.keys(params)
     .map((key) => `${key}=${params[key]}`)
     .join('&');
@@ -115,25 +118,31 @@ const get = async (endpoint, params = {}, headers = {}) => {
     method: 'GET',
   };
 
-  return fetchData(url, fetchParams, headers);
+  return fetchData(url, abort, fetchParams, headers);
 };
 
-const post = async (endpoint, params = {}, headers = {}) => {
+const post = async (
+  endpoint,
+  abort = null,
+  params = {},
+  headers = {},
+  isForm = false
+) => {
   const url = `${config.baseUrl}${endpoint}`;
   const fetchParams = {
     method: 'POST',
     body: JSON.stringify(params),
   };
-  return fetchData(url, fetchParams, headers);
+  return fetchData(url, abort, fetchParams, headers, isForm);
 };
 
-const postForm = async (endpoint, params = {}, headers = {}) => {
+const postForm = async (endpoint, abort = null, params = {}, headers = {}) => {
   const url = `${config.baseUrl}${endpoint}`;
   const fetchParams = {
     method: 'POST',
     body: params,
   };
-  return fetchData(url, fetchParams, headers, true);
+  return fetchData(url, abort, fetchParams, headers, true);
 };
 
 const postWithProgress = async (
@@ -150,30 +159,30 @@ const postWithProgress = async (
   return futchData(url, fetchParams, progress, isForm);
 };
 
-const patch = async (endpoint, params = {}, headers = {}) => {
+const patch = async (endpoint, abort = null, params = {}, headers = {}) => {
   const url = `${config.baseUrl}${endpoint}`;
   const fetchParams = {
     method: 'PATCH',
     body: JSON.stringify(params),
   };
-  return fetchData(url, fetchParams, headers);
+  return fetchData(url, abort, fetchParams, headers);
 };
 
-const put = async (endpoint, params = {}, headers = {}) => {
+const put = async (endpoint, abort = null, params = {}, headers = {}) => {
   const url = `${config.baseUrl}${endpoint}`;
   const fetchParams = {
     method: 'PUT',
     body: JSON.stringify(params),
   };
-  return fetchData(url, fetchParams, headers);
+  return fetchData(url, abort, fetchParams, headers);
 };
 
-const remove = async (endpoint, headers = {}) => {
+const remove = async (endpoint, abort = null, headers = {}) => {
   const url = `${config.baseUrl}${endpoint}`;
   const fetchParams = {
     method: 'DELETE',
   };
-  return fetchData(url, fetchParams, headers);
+  return fetchData(url, abort, fetchParams, headers);
 };
 
 export { get, post, postForm, put, patch, remove, postWithProgress };

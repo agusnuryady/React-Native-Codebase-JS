@@ -10,7 +10,7 @@ import { Header, Button, Input } from '../../components';
 import { COLORS, STYLES } from '../../configs';
 import { ArrowLeftIcon, LinkedInIcon } from '../../assets/svgs';
 
-const Component = () => {
+const RegisterScreen = () => {
   //package value
   const navigation = useNavigation();
 
@@ -38,7 +38,7 @@ const Component = () => {
           styleContainer={styles.backContainer}
           styleWrap={styles.backWrap}
         >
-          <ArrowLeftIcon width="20" heigh="20" />
+          <ArrowLeftIcon width="20" heigh="20" fill={COLORS.black} />
         </Button>
         <Text style={styles.headerTitle}>{I18n.t('register')}</Text>
       </Header>
@@ -82,7 +82,7 @@ const Component = () => {
             styleContainer={styles.row}
             color={COLORS.red60}
           >
-            <LinkedInIcon width="22" height="22" color={COLORS.primaryWhite} />
+            <LinkedInIcon width="22" height="22" fill={COLORS.primaryWhite} />
             <Text style={[styles.textButton, STYLES.mrl12]}>Google</Text>
           </Button>
           <Button
@@ -90,7 +90,7 @@ const Component = () => {
             styleContainer={styles.row}
             color={COLORS.primaryBlue}
           >
-            <LinkedInIcon width="22" height="22" color={COLORS.primaryWhite} />
+            <LinkedInIcon width="22" height="22" fill={COLORS.primaryWhite} />
             <Text style={[styles.textButton, STYLES.mrl12]}>Facebook</Text>
           </Button>
         </View>
@@ -111,4 +111,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default RegisterScreen;

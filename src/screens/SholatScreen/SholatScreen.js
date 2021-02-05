@@ -1,27 +1,36 @@
 //package import
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import { View, Text, Image, ScrollView, RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import { AbortController } from 'abortcontroller-polyfill/dist/cjs-ponyfill';
 
 //local import
 import styles from './styles';
 import I18n from '../../i18n';
 import { COLORS, IMAGES } from '../../configs';
-import { getJadwal } from '../../database/redux-actions';
+import { getJadwal } from '../../redux/redux-actions';
 import { Button, Header } from '../../components';
 import { ArrowLeftIcon } from '../../assets/svgs';
 
-const Component = () => {
+const SholatScreen = () => {
   //package value
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const controller = useMemo(() => new AbortController(), []);
 
   //state value
   const sholatState = useSelector((state) => state.sholat);
   let arr = [...Array(8).keys()];
+
+  //variable value
+  const abort = controller.signal;
+  // abort.addEventListener('abort', () => {
+  //   // Logs true:
+  //   console.log('abort', abort.aborted);
+  // });
 
   //native effect
   useEffect(() => {
@@ -29,13 +38,14 @@ const Component = () => {
     if (sholatState.isFirst) {
       _getSchedule();
     }
-  }, [_getSchedule, sholatState.isFirst]);
+    return () => controller.abort();
+  }, [_getSchedule, controller, sholatState.isFirst]);
 
   //place your function in here
   const _getSchedule = useCallback(() => {
     const curentDate = moment().format('YYYY-MM-DD');
-    dispatch(getJadwal('667', curentDate));
-  }, [dispatch]);
+    dispatch(getJadwal('667', curentDate, abort));
+  }, [abort, dispatch]);
 
   const _timeChecker = useCallback((before, after) => {
     if (
@@ -93,7 +103,7 @@ const Component = () => {
             styleContainer={styles.backContainer}
             styleWrap={styles.backWrap}
           >
-            <ArrowLeftIcon width="20" heigh="20" color={COLORS.black} />
+            <ArrowLeftIcon width="20" heigh="20" fill={COLORS.black} />
           </Button>
           <Text style={styles.headerTitle}>{I18n.t('prayerSchedule')}</Text>
         </>
@@ -393,4 +403,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default SholatScreen;

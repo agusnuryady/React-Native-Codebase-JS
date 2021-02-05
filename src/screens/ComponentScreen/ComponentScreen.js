@@ -14,7 +14,7 @@ import {
   Input,
 } from '../../components';
 
-const Component = () => {
+const ComponentScreen = () => {
   //state value
   const [alertSuccess, setAlertSuccess] = useState(false);
   const [alertWarning, setAlertWarning] = useState(false);
@@ -200,4 +200,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default ComponentScreen;

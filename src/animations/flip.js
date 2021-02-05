@@ -4,7 +4,7 @@ import { Easing } from 'react-native-reanimated';
 import { Animated, View } from 'react-native';
 import PropTypes from 'prop-types';
 
-const Component = ({ children, duration, style }) => {
+const FlipAnimated = ({ children, duration, style }) => {
   //state value
   const [flipValue] = useState(new Animated.Value(0));
 
@@ -39,16 +39,16 @@ const Component = ({ children, duration, style }) => {
   );
 };
 
-Component.propTypes = {
+FlipAnimated.propTypes = {
   children: PropTypes.node,
   duration: PropTypes.number,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
 };
 
-Component.defaultProps = {
+FlipAnimated.defaultProps = {
   children: <View />,
   duration: 3000,
   style: {},
 };
 
-export default memo(Component);
+export default memo(FlipAnimated);

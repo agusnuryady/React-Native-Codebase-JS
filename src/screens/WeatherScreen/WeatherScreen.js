@@ -1,38 +1,42 @@
 //package import
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { View, Text, Image, FlatList, RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import { AbortController } from 'abortcontroller-polyfill/dist/cjs-ponyfill';
 
 //local import
 import styles from './styles';
-import { IMAGES, STYLES } from '../../configs';
+import { COLORS, IMAGES, STYLES } from '../../configs';
 import { getWeather } from '../../apis';
 import { Button, Header } from '../../components';
 import { ArrowLeftIcon, ThermometerIcon, WindIcon } from '../../assets/svgs';
 
-const Component = () => {
+const WeatherScreen = () => {
   //package value
   const navigation = useNavigation();
+  const controller = useMemo(() => new AbortController(), []);
 
   //state value
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
 
   //variable value
+  const abort = controller.signal;
 
   //native effect
   useEffect(() => {
     //function here
     _getWeather();
-  }, [_getWeather]);
+    return () => controller.abort();
+  }, [_getWeather, controller]);
 
   //place your function in here
   const _getWeather = useCallback(async () => {
     setIsLoading(true);
     try {
-      let res = await getWeather();
+      const res = await getWeather(abort);
       if (res.dataseries.length > 0) {
         setIsLoading(false);
         setData(res.dataseries);
@@ -41,9 +45,11 @@ const Component = () => {
       }
     } catch (error) {
       console.log('error', error);
-      setIsLoading(false);
+      if (!abort.aborted) {
+        setIsLoading(false);
+      }
     }
-  }, []);
+  }, [abort]);
 
   const _windSpeed = useCallback((val) => {
     switch (val) {
@@ -188,7 +194,7 @@ const Component = () => {
               : moment(item.date, 'YYYYMMDD').format('dddd')}
           </Text>
           <View style={STYLES.row}>
-            <WindIcon width="20" height="20" />
+            <WindIcon width="20" height="20" fill={COLORS.black} />
             <Text style={[styles.infoText, STYLES.mrl4]}>
               {_windSpeed(item.wind10m_max)} m/s
             </Text>
@@ -207,7 +213,7 @@ const Component = () => {
             <Text style={[styles.infoText, STYLES.mrb4]}>
               {item.temp2m.max}°C
             </Text>
-            <ThermometerIcon width="30" height="30" />
+            <ThermometerIcon width="30" height="30" fill={COLORS.black} />
             <Text style={[styles.infoText, STYLES.mrt4]}>
               {item.temp2m.min}°C
             </Text>
@@ -281,7 +287,7 @@ const Component = () => {
           styleContainer={styles.backContainer}
           styleWrap={styles.backWrap}
         >
-          <ArrowLeftIcon width="20" heigh="20" />
+          <ArrowLeftIcon width="20" heigh="20" fill={COLORS.black} />
         </Button>
         <Text style={styles.headerTitle}>Jakarta - Indonesia</Text>
       </Header>
@@ -303,4 +309,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default WeatherScreen;

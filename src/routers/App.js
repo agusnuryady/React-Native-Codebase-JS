@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from './Stack';
 import { isBahasa } from '../i18n';
-import { chooseLanguage } from '../database/redux-actions';
+import { chooseLanguage } from '../redux/redux-actions';
 
 const App = () => {
   const dispatch = useDispatch();

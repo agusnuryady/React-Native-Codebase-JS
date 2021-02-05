@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import { COLORS } from '../../configs';
 
-const Component = ({ children, color, shadow, styleWrap, styleContainer }) => {
+const Header = ({ children, color, shadow, styleWrap, styleContainer }) => {
   return (
     <SafeAreaView
       style={[
@@ -22,7 +22,7 @@ const Component = ({ children, color, shadow, styleWrap, styleContainer }) => {
   );
 };
 
-Component.propTypes = {
+Header.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
   shadow: PropTypes.bool,
@@ -30,7 +30,7 @@ Component.propTypes = {
   styleContainer: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
 };
 
-Component.defaultProps = {
+Header.defaultProps = {
   children: <View />,
   color: COLORS.primaryWhite,
   shadow: true,
@@ -38,4 +38,4 @@ Component.defaultProps = {
   styleContainer: {},
 };
 
-export default memo(Component);
+export default memo(Header);

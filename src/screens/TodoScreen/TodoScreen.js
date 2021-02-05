@@ -13,7 +13,7 @@ import {
   deleteData,
   checkTask,
   editData,
-} from '../../database/redux-actions';
+} from '../../redux/redux-actions';
 import { Header, Button, Card } from '../../components';
 import {
   ArrowLeftIcon,
@@ -25,7 +25,7 @@ import {
   TrashIcon,
 } from '../../assets/svgs';
 
-const Component = () => {
+const TodoScreen = () => {
   //package value
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -138,7 +138,7 @@ const Component = () => {
             styleWrap={styles.wrapCheck}
             color={COLORS.green}
           >
-            <EditIcon width="12" height="12" color={COLORS.primaryWhite} />
+            <EditIcon width="12" height="12" fill={COLORS.primaryWhite} />
           </Button>
         )}
         <Button
@@ -147,7 +147,7 @@ const Component = () => {
           styleWrap={[styles.wrapCheck, STYLES.mrl4]}
           color={COLORS.red}
         >
-          <TrashIcon width="12" height="12" color={COLORS.primaryWhite} />
+          <TrashIcon width="12" height="12" fill={COLORS.primaryWhite} />
         </Button>
       </View>
     </View>
@@ -155,7 +155,7 @@ const Component = () => {
 
   const _renderEmptyItem = () => (
     <View style={styles.wrapEmptyData}>
-      <TodoIcon width="50" height="50" color={COLORS.gray} />
+      <TodoIcon width="50" height="50" fill={COLORS.gray} />
       <Text style={[styles.smallText, STYLES.mrt12]}>{I18n.t('empty')}</Text>
     </View>
   );
@@ -170,7 +170,7 @@ const Component = () => {
             styleContainer={styles.backContainer}
             styleWrap={styles.backWrap}
           >
-            <ArrowLeftIcon width="20" heigh="20" color={COLORS.black} />
+            <ArrowLeftIcon width="20" heigh="20" fill={COLORS.black} />
           </Button>
           <Text style={styles.headerTitle}>{I18n.t('todoList')}</Text>
         </>
@@ -223,10 +223,10 @@ const Component = () => {
               <ChevronUpIcon
                 width="20"
                 height="20"
-                color={COLORS.primaryWhite}
+                fill={COLORS.primaryWhite}
               />
             ) : (
-              <PlusIcon width="20" height="20" color={COLORS.primaryWhite} />
+              <PlusIcon width="20" height="20" fill={COLORS.primaryWhite} />
             )}
           </Card>
         </View>
@@ -235,4 +235,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default TodoScreen;

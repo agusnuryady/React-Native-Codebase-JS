@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles';
 import I18n from '../../i18n';
 import { COLORS } from '../../configs';
-import { chooseLanguage } from '../../database/redux-actions';
+import { chooseLanguage } from '../../redux/redux-actions';
 
-const Component = () => {
+const SettingScreen = () => {
   //package value
   const dispatch = useDispatch();
 
@@ -61,4 +61,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default SettingScreen;
