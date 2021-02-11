@@ -20,10 +20,36 @@ const Card = ({
   onPress,
   disabled,
   disabledColor,
+  width,
+  height,
   ...props
 }) => {
+  let widthWrap = null;
+  let widthContainer = null;
+  let heightWrap = null;
+  let heightContainer = null;
   let styleShadows =
     Object.keys(styleShadow).length !== 0 ? styleShadow : styles.shadow;
+
+  if (width !== null && width !== undefined) {
+    if (width.toString().match(/%/g)) {
+      widthWrap = width;
+      widthContainer = '100%';
+    } else {
+      widthWrap = width;
+      widthContainer = width;
+    }
+  }
+
+  if (height !== null && height !== undefined) {
+    if (height.toString().match(/%/g)) {
+      heightWrap = height;
+      heightContainer = '100%';
+    } else {
+      heightWrap = height;
+      heightContainer = height;
+    }
+  }
 
   switch (types) {
     case 'basic':
@@ -31,6 +57,7 @@ const Card = ({
         <View
           style={[
             styles.wrapCardBasic,
+            { width: widthWrap, height: heightWrap },
             shadow && styleShadows,
             styleWrap,
             { backgroundColor: color },
@@ -42,17 +69,26 @@ const Card = ({
     case 'button':
       return (
         <View
-          style={[styleBox, Platform.OS === 'ios' && shadow && styleShadows]}
+          style={[
+            styleBox,
+            { width: widthWrap, height: heightWrap },
+            Platform.OS === 'ios' && shadow && styleShadows,
+          ]}
         >
           <Button
             onPress={onPress}
             color={color}
             styleWrap={[
               styles.wrapCardButton,
+              { width: widthContainer, height: heightContainer },
               styleWrap,
               shadow && styleShadows,
             ]}
-            styleContainer={[styles.containerCardButton, styleContainer]}
+            styleContainer={[
+              styles.containerCardButton,
+              { width: widthContainer, height: heightContainer },
+              styleContainer,
+            ]}
             disabled={disabled}
             disabledColor={disabledColor}
             {...props}
@@ -76,6 +112,8 @@ Card.propTypes = {
   onPress: PropTypes.func,
   disabled: PropTypes.bool,
   disabledColor: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Card.defaultProps = {
@@ -90,6 +128,8 @@ Card.defaultProps = {
   onPress: () => null,
   disabled: false,
   disabledColor: COLORS.black70,
+  width: null,
+  height: null,
 };
 
 export default memo(Card);

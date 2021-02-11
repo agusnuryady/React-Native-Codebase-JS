@@ -1,31 +1,18 @@
-//package import
-import React, { useEffect, useState } from 'react';
+//package import here
+import React from 'react';
 import { View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-//local import
-import styles from './styles';
+//local import here
+import styles from './Login.styles';
+import LoginLogic from './Login.logic';
 import I18n from '../../i18n';
 import { Header, Button, Input } from '../../components';
 import { COLORS, STYLES } from '../../configs';
 import { ArrowLeftIcon, LinkedInIcon } from '../../assets/svgs';
 
 const LoginScreen = () => {
-  //package value
-  const navigation = useNavigation();
-
-  //state value
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-
-  //variable value
-
-  //native effect
-  useEffect(() => {
-    //function here
-  }, []);
-
-  //place your function in here
+  //logic value here
+  const { data, actions } = LoginLogic();
 
   //place your extension component here
 
@@ -34,7 +21,7 @@ const LoginScreen = () => {
       <Header shadow={false}>
         <Button
           types="nude"
-          onPress={() => navigation.goBack()}
+          onPress={actions.goBack}
           styleContainer={styles.backContainer}
           styleWrap={styles.backWrap}
         >
@@ -49,28 +36,28 @@ const LoginScreen = () => {
         </Text>
         <Input
           label={I18n.t('name')}
-          value={name}
-          onChangeText={(val) => setName(val)}
+          value={data.name}
+          onChangeText={(val) => actions.setName(val)}
           placeholder={I18n.t('name')}
           returnKeyType="done"
           styleWrap={STYLES.mrb20}
-          isError={name ? false : true}
+          isError={data.name ? false : true}
           errorMessage={I18n.t('formCantEmpty')}
         />
         <Input
           label={I18n.t('phoneNumber')}
-          value={phone}
-          onChangeText={(val) => setPhone(val)}
+          value={data.phone}
+          onChangeText={(val) => actions.setPhone(val)}
           placeholder="089xxx"
           keyboardType="phone-pad"
           returnKeyType="done"
           styleWrap={STYLES.mrb20}
-          isError={phone ? false : true}
+          isError={data.phone ? false : true}
           errorMessage={I18n.t('formCantEmpty')}
         />
         <Button
           title={I18n.t('signIn')}
-          disabled={!name}
+          disabled={!data.name}
           styleWrap={STYLES.mrb20}
         />
         <View style={styles.wrapCenter}>
@@ -99,7 +86,7 @@ const LoginScreen = () => {
             {I18n.t('dontHaveAccount')}
             <Text
               style={styles.textLink}
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => actions.navigation.navigate('Register')}
             >
               {' '}
               {I18n.t('register')}

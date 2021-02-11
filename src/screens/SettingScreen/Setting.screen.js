@@ -1,26 +1,18 @@
-//package import
-import React, { useCallback } from 'react';
+//package import here
+import React from 'react';
 import { SafeAreaView, Text, TouchableHighlight, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 
-//local import
-import styles from './styles';
+//local import here
+import styles from './Setting.styles';
+import SettingLogic from './Setting.logic';
 import I18n from '../../i18n';
 import { COLORS } from '../../configs';
-import { chooseLanguage } from '../../redux/redux-actions';
 
-const SettingScreen = () => {
-  //package value
-  const dispatch = useDispatch();
+const ExampleHooksScreen = () => {
+  //logic value here
+  const { data, actions } = SettingLogic();
 
-  //state value
-  const persistState = useSelector((state) => state.persist);
-  const _handleClick = useCallback(
-    (value) => {
-      dispatch(chooseLanguage(value));
-    },
-    [dispatch]
-  );
+  //place your extension component here
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,12 +21,12 @@ const SettingScreen = () => {
         <TouchableHighlight
           style={[styles.button, styles.border]}
           underlayColor={COLORS.black40}
-          disabled={persistState.language === 'en'}
-          onPress={() => _handleClick('en')}
+          disabled={data.persistState.language === 'en'}
+          onPress={() => actions._handleClick('en')}
         >
           <>
             <Text style={styles.text}>English</Text>
-            {persistState.language === 'en' ? (
+            {data.persistState.language === 'en' ? (
               <View style={styles.wrapIcon}>
                 <Text>{I18n.t('selected')}</Text>
               </View>
@@ -44,12 +36,12 @@ const SettingScreen = () => {
         <TouchableHighlight
           style={styles.button}
           underlayColor={COLORS.black40}
-          disabled={persistState.language === 'id'}
-          onPress={() => _handleClick('id')}
+          disabled={data.persistState.language === 'id'}
+          onPress={() => actions._handleClick('id')}
         >
           <>
             <Text style={styles.text}>Bahasa Indonesia</Text>
-            {persistState.language === 'id' && (
+            {data.persistState.language === 'id' && (
               <View style={styles.wrapIcon}>
                 <Text>{I18n.t('selected')}</Text>
               </View>
@@ -61,4 +53,4 @@ const SettingScreen = () => {
   );
 };
 
-export default SettingScreen;
+export default ExampleHooksScreen;

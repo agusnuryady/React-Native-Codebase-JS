@@ -5,10 +5,10 @@ import { StyleSheet } from 'react-native';
 import { COLORS } from '../../configs';
 import { FONT_HEADLINE_H1, FONT_BODY1 } from '../../configs/fonts';
 
-const styles = StyleSheet.create({
+const ExampleHooksStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
 
-export default styles;
+export default ExampleHooksStyles;

@@ -1,3 +1,3 @@
-import WeatherScreen from './WeatherScreen';
+import WeatherScreen from './Weather.screen';
 
 export default WeatherScreen;

@@ -1,3 +1,3 @@
-import TodoScreen from './TodoScreen';
+import TodoScreen from './Todo.screen';
 
 export default TodoScreen;

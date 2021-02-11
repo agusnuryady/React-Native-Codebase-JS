@@ -1,3 +1,3 @@
-import SholatScreen from './SholatScreen';
+import SholatScreen from './Sholat.screen';
 
 export default SholatScreen;

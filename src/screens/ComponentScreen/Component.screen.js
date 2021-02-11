@@ -1,9 +1,10 @@
 //package import
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, ScrollView, View } from 'react-native';
 
-//local import
-import styles from './styles';
+//local import here
+import styles from './Component.styles';
+import ComponentLogic from './Component.logic';
 import I18n from '../../i18n';
 import { COLORS, STYLES } from '../../configs';
 import {
@@ -15,62 +16,60 @@ import {
 } from '../../components';
 
 const ComponentScreen = () => {
-  //state value
-  const [alertSuccess, setAlertSuccess] = useState(false);
-  const [alertWarning, setAlertWarning] = useState(false);
-  const [alertInformation, setAlertInformation] = useState(false);
-  const [alertError, setAlertError] = useState(false);
+  //logic value here
+  const { data, actions } = ComponentLogic();
+
+  //place your extension component here
 
   return (
     <View style={styles.container}>
       <Header>
         <Text style={styles.title}>{I18n.t('listComponent')}</Text>
       </Header>
+      <AlertPopUp
+        visible={data.alertSuccess}
+        title={I18n.t('successAlert')}
+        desc={I18n.t('successAlert')}
+        types="success"
+        duration={10000}
+        close={() => {
+          actions.setAlertSuccess(false);
+        }}
+      />
+
+      <AlertPopUp
+        visible={data.alertWarning}
+        title={I18n.t('warningAlert')}
+        desc={I18n.t('warningAlert')}
+        types="warning"
+        duration={10000}
+        close={() => {
+          actions.setAlertWarning(false);
+        }}
+      />
+
+      <AlertPopUp
+        visible={data.alertInformation}
+        title={I18n.t('informationAlert')}
+        desc={I18n.t('informationAlert')}
+        types="information"
+        duration={10000}
+        close={() => {
+          actions.setAlertInformation(false);
+        }}
+      />
+
+      <AlertPopUp
+        visible={data.alertError}
+        title={I18n.t('errorAlert')}
+        desc={I18n.t('errorAlert')}
+        types="error"
+        duration={10000}
+        close={() => {
+          actions.setAlertError(false);
+        }}
+      />
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        <AlertPopUp
-          visible={alertSuccess}
-          title={I18n.t('successAlert')}
-          desc={I18n.t('successAlert')}
-          types="success"
-          duration={10000}
-          close={() => {
-            setAlertSuccess(false);
-          }}
-        />
-
-        <AlertPopUp
-          visible={alertWarning}
-          title={I18n.t('warningAlert')}
-          desc={I18n.t('warningAlert')}
-          types="warning"
-          duration={10000}
-          close={() => {
-            setAlertWarning(false);
-          }}
-        />
-
-        <AlertPopUp
-          visible={alertInformation}
-          title={I18n.t('informationAlert')}
-          desc={I18n.t('informationAlert')}
-          types="information"
-          duration={10000}
-          close={() => {
-            setAlertInformation(false);
-          }}
-        />
-
-        <AlertPopUp
-          visible={alertError}
-          title={I18n.t('errorAlert')}
-          desc={I18n.t('errorAlert')}
-          types="error"
-          duration={10000}
-          close={() => {
-            setAlertError(false);
-          }}
-        />
-
         <Button
           title={I18n.t('filledButton')}
           styleContainer={STYLES.pd16}
@@ -108,7 +107,7 @@ const ComponentScreen = () => {
           styleContainer={STYLES.pd16}
           styleWrap={STYLES.mrb20}
           onPress={() => {
-            setAlertSuccess(true);
+            actions.setAlertSuccess(true);
           }}
           color={COLORS.green80}
           isLoading={false}
@@ -118,7 +117,7 @@ const ComponentScreen = () => {
           styleContainer={STYLES.pd16}
           styleWrap={STYLES.mrb20}
           onPress={() => {
-            setAlertWarning(true);
+            actions.setAlertWarning(true);
           }}
           color={COLORS.yellow70}
           isLoading={false}
@@ -128,7 +127,7 @@ const ComponentScreen = () => {
           styleContainer={STYLES.pd16}
           styleWrap={STYLES.mrb20}
           onPress={() => {
-            setAlertInformation(true);
+            actions.setAlertInformation(true);
           }}
           color={COLORS.blue80}
           isLoading={false}
@@ -138,7 +137,7 @@ const ComponentScreen = () => {
           styleContainer={STYLES.pd16}
           styleWrap={STYLES.mrb20}
           onPress={() => {
-            setAlertError(true);
+            actions.setAlertError(true);
           }}
           color={COLORS.red70}
           isLoading={false}

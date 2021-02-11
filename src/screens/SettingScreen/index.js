@@ -1,3 +1,3 @@
-import SettingScreen from './SettingScreen';
+import SettingScreen from './Setting.screen';
 
 export default SettingScreen;

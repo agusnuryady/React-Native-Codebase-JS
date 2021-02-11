@@ -1,3 +1,3 @@
-import ExampleHooks from './ExampleHooks';
+import ExampleHooks from './ExampleHooks.screen';
 
 export default ExampleHooks;

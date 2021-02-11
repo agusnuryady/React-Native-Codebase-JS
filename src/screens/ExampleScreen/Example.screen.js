@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
 //local import
-import styles from './styles';
+import styles from './Example.styles';
+import ExampleLogic from './Example.logic';
+
+const { data, actions } = ExampleLogic();
 
 class ExampleScreen extends Component {
   constructor(props) {
@@ -19,12 +22,10 @@ class ExampleScreen extends Component {
     //function here
   }
 
-  //place your function in here
-
   //place your extension component here
 
   render() {
-    //variable value
+    //variable value here
 
     return (
       <View style={styles.container}>

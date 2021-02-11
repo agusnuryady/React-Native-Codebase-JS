@@ -1,73 +1,28 @@
 //package import
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React from 'react';
 import { View, Text, Image, ScrollView, RefreshControl } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import { AbortController } from 'abortcontroller-polyfill/dist/cjs-ponyfill';
 
 //local import
-import styles from './styles';
+import styles from './Sholat.styles';
+import SholatLogic from './Sholat.logic';
 import I18n from '../../i18n';
 import { COLORS, IMAGES } from '../../configs';
-import { getJadwal } from '../../redux/redux-actions';
+import { isEmpty } from '../../utils';
 import { Button, Header } from '../../components';
 import { ArrowLeftIcon } from '../../assets/svgs';
 
 const SholatScreen = () => {
-  //package value
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-  const controller = useMemo(() => new AbortController(), []);
-
-  //state value
-  const sholatState = useSelector((state) => state.sholat);
-  let arr = [...Array(8).keys()];
-
-  //variable value
-  const abort = controller.signal;
-  // abort.addEventListener('abort', () => {
-  //   // Logs true:
-  //   console.log('abort', abort.aborted);
-  // });
-
-  //native effect
-  useEffect(() => {
-    //function here
-    if (sholatState.isFirst) {
-      _getSchedule();
-    }
-    return () => controller.abort();
-  }, [_getSchedule, controller, sholatState.isFirst]);
-
-  //place your function in here
-  const _getSchedule = useCallback(() => {
-    const curentDate = moment().format('YYYY-MM-DD');
-    dispatch(getJadwal('667', curentDate, abort));
-  }, [abort, dispatch]);
-
-  const _timeChecker = useCallback((before, after) => {
-    if (
-      moment().isBetween(
-        moment(before, 'hh:mm').add(-1, 'minutes'),
-        moment(after)
-      )
-    ) {
-      return { color: COLORS.primaryWhite };
-    } else if (moment().isBefore(moment(before, 'hh:mm'))) {
-      return { color: COLORS.black };
-    } else {
-      return { color: COLORS.gray };
-    }
-  }, []);
+  //logic value
+  const { data, actions } = SholatLogic();
 
   //place your extension component here
   const _renderLoading = () => {
     return (
       <>
         <SkeletonPlaceholder>
-          {arr.map(({ item, index }) => (
+          {data.emptyAray.map(({ item, index }) => (
             <SkeletonPlaceholder.Item
               key={index + 1}
               width="100%"
@@ -99,7 +54,7 @@ const SholatScreen = () => {
         <>
           <Button
             types="nude"
-            onPress={() => navigation.goBack()}
+            onPress={actions.goBack}
             styleContainer={styles.backContainer}
             styleWrap={styles.backWrap}
           >
@@ -111,10 +66,8 @@ const SholatScreen = () => {
       <ScrollView
         refreshControl={
           <RefreshControl
-            refreshing={sholatState.isLoading}
-            onRefresh={() => {
-              _getSchedule();
-            }}
+            refreshing={data.sholatState.isLoading}
+            onRefresh={actions._getSchedule}
           />
         }
       >
@@ -132,7 +85,7 @@ const SholatScreen = () => {
           />
         </View>
         <View style={styles.wrapList}>
-          {sholatState.isLoading ? (
+          {data.sholatState.isLoading && isEmpty(data.sholatState.data) ? (
             _renderLoading()
           ) : (
             <>
@@ -140,17 +93,20 @@ const SholatScreen = () => {
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.imsak, 'hh:mm').add(-1, 'minutes'),
-                    moment(sholatState.data.subuh, 'hh:mm')
+                    moment(data.sholatState.data.imsak, 'hh:mm').add(
+                      -1,
+                      'minutes'
+                    ),
+                    moment(data.sholatState.data.subuh, 'hh:mm')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.imsak,
-                      moment(sholatState.data.subuh, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.imsak,
+                      moment(data.sholatState.data.subuh, 'hh:mm')
                     ),
                   ]}
                 >
@@ -159,30 +115,33 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.imsak,
-                      moment(sholatState.data.subuh, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.imsak,
+                      moment(data.sholatState.data.subuh, 'hh:mm')
                     ),
                   ]}
                 >
-                  {sholatState.data.imsak} AM
+                  {data.sholatState.data.imsak} AM
                 </Text>
               </View>
               <View
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.subuh, 'hh:mm').add(-1, 'minutes'),
-                    moment(sholatState.data.terbit, 'hh:mm')
+                    moment(data.sholatState.data.subuh, 'hh:mm').add(
+                      -1,
+                      'minutes'
+                    ),
+                    moment(data.sholatState.data.terbit, 'hh:mm')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.subuh,
-                      moment(sholatState.data.terbit, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.subuh,
+                      moment(data.sholatState.data.terbit, 'hh:mm')
                     ),
                   ]}
                 >
@@ -191,30 +150,33 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.subuh,
-                      moment(sholatState.data.terbit, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.subuh,
+                      moment(data.sholatState.data.terbit, 'hh:mm')
                     ),
                   ]}
                 >
-                  {sholatState.data.subuh} AM
+                  {data.sholatState.data.subuh} AM
                 </Text>
               </View>
               <View
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.terbit, 'hh:mm').add(-1, 'minutes'),
-                    moment(sholatState.data.dhuha, 'hh:mm')
+                    moment(data.sholatState.data.terbit, 'hh:mm').add(
+                      -1,
+                      'minutes'
+                    ),
+                    moment(data.sholatState.data.dhuha, 'hh:mm')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.terbit,
-                      moment(sholatState.data.dhuha, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.terbit,
+                      moment(data.sholatState.data.dhuha, 'hh:mm')
                     ),
                   ]}
                 >
@@ -223,30 +185,33 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.terbit,
-                      moment(sholatState.data.dhuha, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.terbit,
+                      moment(data.sholatState.data.dhuha, 'hh:mm')
                     ),
                   ]}
                 >
-                  {sholatState.data.terbit} AM
+                  {data.sholatState.data.terbit} AM
                 </Text>
               </View>
               <View
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.dhuha, 'hh:mm').add(-1, 'minutes'),
-                    moment(sholatState.data.dzuhur, 'hh:mm')
+                    moment(data.sholatState.data.dhuha, 'hh:mm').add(
+                      -1,
+                      'minutes'
+                    ),
+                    moment(data.sholatState.data.dzuhur, 'hh:mm')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.dhuha,
-                      moment(sholatState.data.dzuhur, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.dhuha,
+                      moment(data.sholatState.data.dzuhur, 'hh:mm')
                     ),
                   ]}
                 >
@@ -255,30 +220,33 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.dhuha,
-                      moment(sholatState.data.dzuhur, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.dhuha,
+                      moment(data.sholatState.data.dzuhur, 'hh:mm')
                     ),
                   ]}
                 >
-                  {sholatState.data.dhuha} AM
+                  {data.sholatState.data.dhuha} AM
                 </Text>
               </View>
               <View
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.dzuhur, 'hh:mm').add(-1, 'minutes'),
-                    moment(sholatState.data.ashar, 'hh:mm')
+                    moment(data.sholatState.data.dzuhur, 'hh:mm').add(
+                      -1,
+                      'minutes'
+                    ),
+                    moment(data.sholatState.data.ashar, 'hh:mm')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.dzuhur,
-                      moment(sholatState.data.ashar, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.dzuhur,
+                      moment(data.sholatState.data.ashar, 'hh:mm')
                     ),
                   ]}
                 >
@@ -287,30 +255,33 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.dzuhur,
-                      moment(sholatState.data.ashar, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.dzuhur,
+                      moment(data.sholatState.data.ashar, 'hh:mm')
                     ),
                   ]}
                 >
-                  {sholatState.data.dzuhur} AM
+                  {data.sholatState.data.dzuhur} AM
                 </Text>
               </View>
               <View
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.ashar, 'hh:mm').add(-1, 'minutes'),
-                    moment(sholatState.data.maghrib, 'hh:mm')
+                    moment(data.sholatState.data.ashar, 'hh:mm').add(
+                      -1,
+                      'minutes'
+                    ),
+                    moment(data.sholatState.data.maghrib, 'hh:mm')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.ashar,
-                      moment(sholatState.data.maghrib, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.ashar,
+                      moment(data.sholatState.data.maghrib, 'hh:mm')
                     ),
                   ]}
                 >
@@ -319,33 +290,33 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.ashar,
-                      moment(sholatState.data.maghrib, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.ashar,
+                      moment(data.sholatState.data.maghrib, 'hh:mm')
                     ),
                   ]}
                 >
-                  {sholatState.data.ashar} AM
+                  {data.sholatState.data.ashar} AM
                 </Text>
               </View>
               <View
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.maghrib, 'hh:mm').add(
+                    moment(data.sholatState.data.maghrib, 'hh:mm').add(
                       -1,
                       'minutes'
                     ),
-                    moment(sholatState.data.isya, 'hh:mm')
+                    moment(data.sholatState.data.isya, 'hh:mm')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.maghrib,
-                      moment(sholatState.data.isya, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.maghrib,
+                      moment(data.sholatState.data.isya, 'hh:mm')
                     ),
                   ]}
                 >
@@ -354,30 +325,36 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.maghrib,
-                      moment(sholatState.data.isya, 'hh:mm')
+                    actions._timeChecker(
+                      data.sholatState.data.maghrib,
+                      moment(data.sholatState.data.isya, 'hh:mm')
                     ),
                   ]}
                 >
-                  {sholatState.data.maghrib} AM
+                  {data.sholatState.data.maghrib} AM
                 </Text>
               </View>
               <View
                 style={[
                   styles.listItem,
                   moment().isBetween(
-                    moment(sholatState.data.isya, 'hh:mm').add(-1, 'minutes'),
-                    moment(sholatState.data.subuh, 'hh:mm').add(1, 'days')
+                    moment(data.sholatState.data.isya, 'hh:mm').add(
+                      -1,
+                      'minutes'
+                    ),
+                    moment(data.sholatState.data.subuh, 'hh:mm').add(1, 'days')
                   ) && styles.listActive,
                 ]}
               >
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.isya,
-                      moment(sholatState.data.subuh, 'hh:mm').add(1, 'days')
+                    actions._timeChecker(
+                      data.sholatState.data.isya,
+                      moment(data.sholatState.data.subuh, 'hh:mm').add(
+                        1,
+                        'days'
+                      )
                     ),
                   ]}
                 >
@@ -386,13 +363,16 @@ const SholatScreen = () => {
                 <Text
                   style={[
                     styles.headerTitle,
-                    _timeChecker(
-                      sholatState.data.isya,
-                      moment(sholatState.data.subuh, 'hh:mm').add(1, 'days')
+                    actions._timeChecker(
+                      data.sholatState.data.isya,
+                      moment(data.sholatState.data.subuh, 'hh:mm').add(
+                        1,
+                        'days'
+                      )
                     ),
                   ]}
                 >
-                  {sholatState.data.isya} AM
+                  {data.sholatState.data.isya} AM
                 </Text>
               </View>
             </>

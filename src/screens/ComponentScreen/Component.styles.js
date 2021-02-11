@@ -2,15 +2,13 @@
 import { StyleSheet } from 'react-native';
 
 //local import
-import { COLORS } from '../../configs';
+import { COLORS, STYLES } from '../../configs';
 import { FONT_BODY1, FONT_HEADLINE_H4 } from '../../configs/fonts';
 
-const styles = StyleSheet.create({
+const ComponentStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.primaryWhite,
-    alignItems: 'center',
-    padding: 16,
   },
   title: {
     ...FONT_HEADLINE_H4,
@@ -18,12 +16,15 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   content: {
-    width: '80%',
+    ...STYLES.pd12,
+    alignSelf: 'center',
+    width: '90%',
     backgroundColor: COLORS.primaryWhite,
     borderRadius: 10,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     elevation: 3,
+    marginVertical: 16,
   },
   button: {
     paddingVertical: 20,
@@ -43,6 +44,10 @@ const styles = StyleSheet.create({
     right: 10,
     top: 20,
   },
+  borderColor: {
+    borderColor: COLORS.green80,
+    borderWidth: 1,
+  },
 });
 
-export default styles;
+export default ComponentStyles;

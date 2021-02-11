@@ -6,7 +6,7 @@ import { COLORS } from '../../configs';
 import { FONT_BODY2, FONT_BODY3, FONT_HEADLINE_H1 } from '../../configs/fonts';
 import { widthByScreen } from '../../utils';
 
-const styles = StyleSheet.create({
+const HomeStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
+export default HomeStyles;

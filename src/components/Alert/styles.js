@@ -12,10 +12,10 @@ export default StyleSheet.create({
     position: 'absolute',
     top: StatusBar.currentHeight,
     zIndex: 3,
+    elevation: 3,
   },
   containerAlert: {
     width: '100%',
-    elevation: 3,
     padding: 8,
     borderRadius: 10,
     flexDirection: 'row',

@@ -27,12 +27,18 @@ const Button = ({
   onPress,
   title,
   types,
+  width,
+  height,
   ...props
 }) => {
   //variable value
   let containerStyle = styles.containerFilled;
   let textStyle = styles.textFilled;
   let loadingColors = COLORS.primaryWhite;
+  let widthWrap = null;
+  let widthContainer = null;
+  let heightWrap = null;
+  let heightContainer = null;
 
   if (disabled) {
     switch (types) {
@@ -76,14 +82,41 @@ const Button = ({
     title = title.toUpperCase();
   }
 
+  if (width !== null && width !== undefined) {
+    if (width.toString().match(/%/g)) {
+      widthWrap = width;
+      widthContainer = '100%';
+    } else {
+      widthWrap = width;
+      widthContainer = width;
+    }
+  }
+
+  if (height !== null && height !== undefined) {
+    if (height.toString().match(/%/g)) {
+      heightWrap = height;
+      heightContainer = '100%';
+    } else {
+      heightWrap = height;
+      heightContainer = height;
+    }
+  }
+
   const colors = disabled ? disabledColor : color;
 
   if (Platform.OS === 'ios') {
     return (
-      <View style={[styles.wrapContainer, styleWrap]}>
+      <View
+        style={[
+          styles.wrapContainer,
+          { width: widthWrap, height: heightWrap },
+          styleWrap,
+        ]}
+      >
         <TouchableOpacity
           style={[
             containerStyle,
+            { width: widthContainer, height: heightContainer },
             styleContainer,
             color && { backgroundColor: colors },
           ]}
@@ -107,7 +140,13 @@ const Button = ({
     );
   } else {
     return (
-      <View style={[styles.wrapContainer, styleWrap]}>
+      <View
+        style={[
+          styles.wrapContainer,
+          { width: widthWrap, height: heightWrap },
+          styleWrap,
+        ]}
+      >
         <TouchableNativeFeedback
           disabled={disabled}
           onPress={onPress}
@@ -118,6 +157,7 @@ const Button = ({
           <View
             style={[
               containerStyle,
+              { width: widthContainer, height: heightContainer },
               styleContainer,
               color && { backgroundColor: colors },
             ]}
@@ -152,6 +192,8 @@ Button.propTypes = {
   onPress: PropTypes.func,
   title: PropTypes.string,
   types: PropTypes.oneOf(['filled', 'ghost', 'nude']),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Button.defaultProps = {
@@ -167,6 +209,8 @@ Button.defaultProps = {
   onPress: () => null,
   title: '',
   types: 'filled',
+  width: null,
+  height: null,
 };
 
 export default memo(Button);

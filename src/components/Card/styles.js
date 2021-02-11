@@ -18,7 +18,6 @@ export default StyleSheet.create({
   wrapCardBasic: {
     width: null,
     borderRadius: 10,
-    overflow: 'hidden',
     padding: 16,
   },
   wrapCardButton: {

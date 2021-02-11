@@ -1,7 +1,10 @@
+//package import
 import { StyleSheet } from 'react-native';
+
+//local import
 import { FONT_BODY2, FONT_BODY3, FONT_HEADLINE_H4 } from '../../configs/fonts';
 
-const styles = StyleSheet.create({
+const WeatherStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -46,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
+export default WeatherStyles;
