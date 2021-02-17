@@ -28,8 +28,9 @@ Jika ingi mengubah nama project bawaan codebase ini silahkan ikuti intruksi diba
 2. jalnkan > `yarn add react-native-rename`
 3. jalankan > `npx react-native-rename "your app name"` atau `npx react-native-rename "your app name" -b com.costumidentifier.appname` untuk custom Bundle Identifier
 4. jalankan > `cd android && ./gradlew clean && cd ..`
-5. jalankan > `yarn remove react-native-rename`
-6. jalankan > `rm -rf node_modules`
+5. buka `android/app/src/main/java/SplashActivity.java` lalu ubah nama package sebelumnya menjadi nama package yang baru
+6. jalankan > `yarn remove react-native-rename`
+7. jalankan > `rm -rf node_modules`
 
 setelah itu bisa mengikuti instruksi selanjutnya untuk menjalankan RN nya dibawah ini
 

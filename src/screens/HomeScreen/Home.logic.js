@@ -1,6 +1,7 @@
 //package import here
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import SplashScreen from 'react-native-splash-screen';
 
 //local import here
 import HomeNavigator from './Home.navigator';
@@ -118,6 +119,7 @@ const HomeLogic = () => {
 
   useEffect(() => {
     //function here
+    SplashScreen.hide();
   }, [persistState.language]);
 
   //place your function in here
