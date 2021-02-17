@@ -1,5 +1,5 @@
 //package import
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 //local import
 import { COLORS } from '../../configs';
@@ -22,6 +22,7 @@ export default StyleSheet.create({
   },
   wrapCardButton: {
     borderRadius: 10,
+    overflow: Platform.OS === 'ios' ? 'visible' : 'hidden',
   },
   containerCardButton: {
     borderRadius: 10,

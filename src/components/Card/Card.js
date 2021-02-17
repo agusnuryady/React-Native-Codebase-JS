@@ -1,6 +1,6 @@
 //package import
 import React, { memo } from 'react';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 //local import
@@ -13,7 +13,6 @@ const Card = ({
   children,
   color,
   shadow,
-  styleBox,
   styleShadow,
   styleWrap,
   styleContainer,
@@ -68,34 +67,26 @@ const Card = ({
       );
     case 'button':
       return (
-        <View
-          style={[
-            styleBox,
-            { width: widthWrap, height: heightWrap },
-            Platform.OS === 'ios' && shadow && styleShadows,
+        <Button
+          onPress={onPress}
+          color={color}
+          styleWrap={[
+            styles.wrapCardButton,
+            { width: widthContainer, height: heightContainer },
+            styleWrap,
+            shadow && styleShadows,
           ]}
+          styleContainer={[
+            styles.containerCardButton,
+            { width: widthContainer, height: heightContainer },
+            styleContainer,
+          ]}
+          disabled={disabled}
+          disabledColor={disabledColor}
+          {...props}
         >
-          <Button
-            onPress={onPress}
-            color={color}
-            styleWrap={[
-              styles.wrapCardButton,
-              { width: widthContainer, height: heightContainer },
-              styleWrap,
-              shadow && styleShadows,
-            ]}
-            styleContainer={[
-              styles.containerCardButton,
-              { width: widthContainer, height: heightContainer },
-              styleContainer,
-            ]}
-            disabled={disabled}
-            disabledColor={disabledColor}
-            {...props}
-          >
-            {children}
-          </Button>
-        </View>
+          {children}
+        </Button>
       );
   }
 };
@@ -105,7 +96,6 @@ Card.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
   shadow: PropTypes.bool,
-  styleBox: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
   styleShadow: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
   styleWrap: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
   styleContainer: PropTypes.oneOfType([PropTypes.object, PropTypes.any]),
@@ -121,7 +111,6 @@ Card.defaultProps = {
   children: <View />,
   color: COLORS.primaryWhite,
   shadow: true,
-  styleBox: {},
   styleShadow: {},
   styleWrap: {},
   styleContainer: {},

@@ -9,6 +9,7 @@ import I18n from '../../i18n';
 import { IMAGES, STYLES } from '../../configs';
 import { Card } from '../../components';
 import { FlipAnimated, SpinAnimated } from '../../animations';
+import { widthByScreen } from '../../utils';
 
 const HomeScreen = () => {
   //logic value here
@@ -19,9 +20,10 @@ const HomeScreen = () => {
     return (
       <Card
         onPress={() => actions.navigation.navigate(item.screen)}
+        width={(widthByScreen(100) - 73) / 2}
+        height={(widthByScreen(100) - 73) / 2}
         styleContainer={styles.menuConten}
-        styleWrap={styles.menuWrap}
-        styleBox={[STYLES.pd12]}
+        styleWrap={[styles.menuWrap, STYLES.mr12]}
         color={item.color}
         types="button"
       >

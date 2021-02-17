@@ -40,15 +40,23 @@ const Button = ({
   let heightWrap = null;
   let heightContainer = null;
 
+  const colors = disabled ? disabledColor : color;
+
   if (disabled) {
     switch (types) {
       case 'filled':
-        containerStyle = styles.containerDisableFilled;
+        containerStyle = [
+          styles.containerDisableFilled,
+          color && { backgroundColor: colors },
+        ];
         textStyle = styles.textDisableFilled;
         loadingColors = COLORS.black80;
         break;
       case 'ghost':
-        containerStyle = styles.containerDisableGhost;
+        containerStyle = [
+          styles.containerDisableGhost,
+          color && { backgroundColor: colors },
+        ];
         textStyle = styles.textDisableGhost;
         loadingColors = COLORS.black60;
         break;
@@ -61,18 +69,24 @@ const Button = ({
   } else {
     switch (types) {
       case 'filled':
-        containerStyle = styles.containerFilled;
+        containerStyle = [
+          styles.containerFilled,
+          color && { backgroundColor: colors },
+        ];
         textStyle = styles.textFilled;
         loadingColors = COLORS.primaryWhite;
         break;
       case 'ghost':
-        containerStyle = styles.containerGhost;
-        textStyle = styles.textGhost;
+        containerStyle = [
+          styles.containerGhost,
+          color && { borderColor: colors },
+        ];
+        textStyle = [styles.textGhost, color && { color: colors }];
         loadingColors = COLORS.primaryBlue;
         break;
       case 'nude':
         containerStyle = styles.containerNude;
-        textStyle = styles.textNude;
+        textStyle = [styles.textNude, color && { color: colors }];
         loadingColors = COLORS.primaryBlue;
         break;
     }
@@ -102,8 +116,6 @@ const Button = ({
     }
   }
 
-  const colors = disabled ? disabledColor : color;
-
   if (Platform.OS === 'ios') {
     return (
       <View
@@ -118,7 +130,6 @@ const Button = ({
             containerStyle,
             { width: widthContainer, height: heightContainer },
             styleContainer,
-            color && { backgroundColor: colors },
           ]}
           disabled={disabled}
           onPress={onPress}
@@ -159,7 +170,6 @@ const Button = ({
               containerStyle,
               { width: widthContainer, height: heightContainer },
               styleContainer,
-              color && { backgroundColor: colors },
             ]}
           >
             {isLoading ? (

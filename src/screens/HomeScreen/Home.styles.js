@@ -35,8 +35,6 @@ const HomeStyles = StyleSheet.create({
     borderRadius: 10,
   },
   menuConten: {
-    width: (widthByScreen(100) - 73) / 2,
-    height: (widthByScreen(100) - 73) / 2,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

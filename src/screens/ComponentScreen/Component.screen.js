@@ -148,7 +148,7 @@ const ComponentScreen = () => {
             Basic {I18n.t('card')}{' '}
           </Text>
         </Card>
-        <Card types="button" styleBox={STYLES.mrv16} styleWrap={STYLES.mrh8}>
+        <Card types="button" styleWrap={[STYLES.mrh8, STYLES.mrv16]}>
           <Text style={[styles.text, STYLES.mrb12]}>
             Button {I18n.t('card')}
           </Text>
