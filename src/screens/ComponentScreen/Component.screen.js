@@ -26,50 +26,50 @@ const ComponentScreen = () => {
       <Header>
         <Text style={styles.title}>{I18n.t('listComponent')}</Text>
       </Header>
-      <AlertPopUp
-        visible={data.alertSuccess}
-        title={I18n.t('successAlert')}
-        desc={I18n.t('successAlert')}
-        types="success"
-        duration={10000}
-        close={() => {
-          actions.setAlertSuccess(false);
-        }}
-      />
-
-      <AlertPopUp
-        visible={data.alertWarning}
-        title={I18n.t('warningAlert')}
-        desc={I18n.t('warningAlert')}
-        types="warning"
-        duration={10000}
-        close={() => {
-          actions.setAlertWarning(false);
-        }}
-      />
-
-      <AlertPopUp
-        visible={data.alertInformation}
-        title={I18n.t('informationAlert')}
-        desc={I18n.t('informationAlert')}
-        types="information"
-        duration={10000}
-        close={() => {
-          actions.setAlertInformation(false);
-        }}
-      />
-
-      <AlertPopUp
-        visible={data.alertError}
-        title={I18n.t('errorAlert')}
-        desc={I18n.t('errorAlert')}
-        types="error"
-        duration={10000}
-        close={() => {
-          actions.setAlertError(false);
-        }}
-      />
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        <AlertPopUp
+          visible={data.alertSuccess}
+          title={I18n.t('successAlert')}
+          desc={I18n.t('successAlert')}
+          types="success"
+          duration={10000}
+          close={() => {
+            actions.setAlertSuccess(false);
+          }}
+        />
+
+        <AlertPopUp
+          visible={data.alertWarning}
+          title={I18n.t('warningAlert')}
+          desc={I18n.t('warningAlert')}
+          types="warning"
+          duration={10000}
+          close={() => {
+            actions.setAlertWarning(false);
+          }}
+        />
+
+        <AlertPopUp
+          visible={data.alertInformation}
+          title={I18n.t('informationAlert')}
+          desc={I18n.t('informationAlert')}
+          types="information"
+          duration={10000}
+          close={() => {
+            actions.setAlertInformation(false);
+          }}
+        />
+
+        <AlertPopUp
+          visible={data.alertError}
+          title={I18n.t('errorAlert')}
+          desc={I18n.t('errorAlert')}
+          types="error"
+          duration={10000}
+          close={() => {
+            actions.setAlertError(false);
+          }}
+        />
         <Button
           title={I18n.t('filledButton')}
           styleContainer={STYLES.pd16}
