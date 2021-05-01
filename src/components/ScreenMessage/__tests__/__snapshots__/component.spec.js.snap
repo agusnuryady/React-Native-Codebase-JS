@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Some component renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "height": "100%",
+        "justifyContent": "center",
+        "padding": 32,
+        "width": "100%",
+      },
+      Object {},
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 12,
+      }
+    }
+  >
+    <View />
+  </View>
+  <View />
+</View>
+`;
